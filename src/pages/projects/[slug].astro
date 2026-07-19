@@ -4,6 +4,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Badge from '../../components/Badge.astro';
 import Button from '../../components/Button.astro';
 import FreeProjectNotice from '../../components/FreeProjectNotice.astro';
+import SocialButton from '../../components/SocialButton.astro';
 import { getProject, projects } from '../../data/projects';
 import { withBase } from '../../config/site';
 
@@ -53,6 +54,16 @@ const projectData = {
               <Button href={project.issuesUrl} variant="quiet" external>
                 Reportar un error
               </Button>
+            )
+          }{
+            project.communityUrl && (
+              <SocialButton
+                href={project.communityUrl}
+                label="Reportar en Discord"
+                icon="D"
+                service="discord"
+                external
+              />
             )
           }
         </div>

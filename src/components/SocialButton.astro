@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  icon: string;
+  service: 'discord' | 'x' | 'email';
+  external?: boolean;
+}
+
+const { href, label, icon, service, external = false } = Astro.props;
+---
+
+<a
+  class:list={['social-button', `social-button--${service}`]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer' : undefined}
+>
+  <span class="social-button__icon" aria-hidden="true">{icon}</span>
+  <span>{label}</span>
+</a>

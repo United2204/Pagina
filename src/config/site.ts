@@ -15,6 +15,7 @@ export const siteConfig = {
   social: {
     github: 'https://github.com/United2204',
     x: 'https://x.com/ZednanrehTrebor',
+    discord: 'https://discord.com/invite/j2NXFQSsXt',
     kofi: 'https://ko-fi.com/united2204',
     sponsors: '',
     paypal: '',

@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../config/site';
+import SocialButton from './SocialButton.astro';
 
 interface Props {
   compact?: boolean;
@@ -12,11 +13,16 @@ const { compact = false } = Astro.props;
   class:list={['social-links', { 'social-links--compact': compact }]}
   aria-label="Enlaces sociales"
 >
-  <a href={siteConfig.social.github} target="_blank" rel="noreferrer"
-    >GitHub <span aria-hidden="true">↗</span></a
-  >
-  <a href={siteConfig.social.x} target="_blank" rel="noreferrer"
-    >X <span aria-hidden="true">↗</span></a
-  >
-  {!compact && <a href={`mailto:${siteConfig.author.email}`}>Contacto</a>}
+  <a href={siteConfig.social.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+  <SocialButton href={siteConfig.social.x} label="X" icon="𝕏" service="x" external />
+  {
+    !compact && (
+      <SocialButton
+        href={`mailto:${siteConfig.author.email}`}
+        label="Correo"
+        icon="@"
+        service="email"
+      />
+    )
+  }
 </nav>

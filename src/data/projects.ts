@@ -15,6 +15,7 @@ export type Project = {
   downloadUrl?: string;
   documentationUrl?: string;
   issuesUrl?: string;
+  communityUrl?: string;
   changelog: { version: string; date: string; notes: string }[];
   features: string[];
   contribution: string;
@@ -40,6 +41,7 @@ export const projects: Project[] = [
     repository: repositories.cartridge,
     downloadUrl: `${repositories.cartridge}/releases/latest`,
     issuesUrl: `${repositories.cartridge}/issues`,
+    communityUrl: siteConfig.social.discord,
     changelog: [
       {
         version: 'v0.1-beta14',
@@ -72,6 +74,7 @@ export const projects: Project[] = [
     repository: repositories.cartridgeAndroid,
     downloadUrl: `${repositories.cartridgeAndroid}/releases/latest`,
     issuesUrl: `${repositories.cartridgeAndroid}/issues`,
+    communityUrl: siteConfig.social.discord,
     changelog: [
       {
         version: 'v0.1-beta5',
@@ -101,6 +104,7 @@ export const projects: Project[] = [
     technologies: ['iOS', 'TestFlight', 'RPG Maker XP'],
     platforms: ['iOS', 'iPadOS'],
     downloadUrl: 'https://testflight.apple.com/join/EvMPGxTB',
+    communityUrl: siteConfig.social.discord,
     changelog: [
       {
         version: 'v0.1-beta1',

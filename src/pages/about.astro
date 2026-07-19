@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
-import Button from '../components/Button.astro';
+import SocialButton from '../components/SocialButton.astro';
 import { siteConfig } from '../config/site';
 ---
 
@@ -30,7 +30,12 @@ import { siteConfig } from '../config/site';
         <section class="sidebar-card">
           <h2>Contacto</h2><p>
             Para consultas, sugerencias o colaboración puedes escribir directamente.
-          </p><Button href={`mailto:${siteConfig.author.email}`}>Escribir un correo</Button>
+          </p><SocialButton
+            href={`mailto:${siteConfig.author.email}`}
+            label="Escribir un correo"
+            icon="@"
+            service="email"
+          />
         </section><section class="sidebar-card">
           <h2>Enlaces</h2><p>
             <a class="inline-link" href={siteConfig.social.github} target="_blank" rel="noreferrer"

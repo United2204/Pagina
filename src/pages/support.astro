@@ -2,6 +2,7 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import FreeProjectNotice from '../components/FreeProjectNotice.astro';
+import SocialButton from '../components/SocialButton.astro';
 import { siteConfig } from '../config/site';
 ---
 
@@ -11,8 +12,9 @@ import { siteConfig } from '../config/site';
 >
   <header class="page-header">
     <div class="container">
-      <p class="eyebrow">APOYO OPCIONAL</p><h1>Los proyectos son y seguirán siendo gratuitos.</h1><p
-      >
+      <p class="eyebrow">APOYO OPCIONAL</p>
+      <h1>Los proyectos son y seguirán siendo gratuitos.</h1>
+      <p>
         Todo se crea y mantiene en tiempo libre. Si te resulta útil, puedes colaborar de manera
         opcional con costos de publicación, dominio, mantenimiento y desarrollo.
       </p>
@@ -20,55 +22,30 @@ import { siteConfig } from '../config/site';
   </header>
   <section class="section">
     <div class="container">
-      <FreeProjectNotice /><div class="support-grid" style="margin-top: 1.2rem">
+      <FreeProjectNotice />
+      <div class="support-grid" style="margin-top: 1.2rem">
         <article class="support-card">
-          <h2>Ko-fi</h2><p>
-            Una colaboración puntual para cubrir costos y tiempo de desarrollo.
-          </p><Button href={siteConfig.social.kofi} variant="secondary" external
-            >Apoyar en Ko-fi</Button
+          <h2>Ko-fi</h2>
+          <p>Una colaboración puntual para cubrir costos y tiempo de desarrollo.</p>
+          <Button href={siteConfig.social.kofi} variant="secondary" external>Apoyar en Ko-fi</Button
           >
-        </article><article class="support-card">
-          <h2>GitHub Sponsors</h2><p>Apoyo recurrente opcional desde GitHub.</p>{
-            siteConfig.social.sponsors ? (
-              <Button href={siteConfig.social.sponsors} variant="secondary" external>
-                Ver Sponsors
-              </Button>
-            ) : (
-              <p>
-                <strong>Próximamente.</strong> Este enlace se habilitará cuando esté configurado.
-              </p>
-            )
-          }
-        </article><article class="support-card">
-          <h2>PayPal</h2><p>Otra opción configurable para una contribución puntual.</p>{
-            siteConfig.social.paypal ? (
-              <Button href={siteConfig.social.paypal} variant="secondary" external>
-                Apoyar con PayPal
-              </Button>
-            ) : (
-              <p>
-                <strong>Próximamente.</strong> Este enlace se habilitará cuando esté configurado.
-              </p>
-            )
-          }
-        </article><article class="support-card">
-          <h2>Una estrella en GitHub</h2><p>
-            Dar una estrella ayuda a que otras personas encuentren los proyectos.
-          </p><Button href={siteConfig.social.github} variant="secondary" external
+        </article>
+        <article class="support-card">
+          <h2>Una estrella en GitHub</h2>
+          <p>Dar una estrella ayuda a que otras personas encuentren los proyectos.</p>
+          <Button href={siteConfig.social.github} variant="secondary" external
             >Visitar GitHub</Button
           >
-        </article><article class="support-card">
-          <h2>Reportar errores</h2><p>
-            Un reporte claro es una de las formas más útiles de colaborar.
-          </p><Button href={siteConfig.social.github} variant="secondary" external
-            >Ver repositorios</Button
-          >
-        </article><article class="support-card">
-          <h2>Compartir</h2><p>
-            Recomendar un proyecto a quien pueda necesitarlo también ayuda mucho.
-          </p><Button href="mailto:?subject=Proyectos%20de%20United%20Software" variant="secondary"
-            >Compartir por correo</Button
-          >
+        </article>
+        <article class="support-card">
+          <h2>Reportar errores</h2>
+          <p>Un reporte claro es una de las formas más útiles de colaborar.</p>
+          <SocialButton
+            href={`mailto:${siteConfig.author.email}?subject=Reporte%20de%20error%20-%20United%20Software`}
+            label="Reportar por correo"
+            icon="@"
+            service="email"
+          />
         </article>
       </div>
     </div>
