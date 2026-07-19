@@ -878,7 +878,8 @@ ul {
 }
 
 .social-button--x .social-button__icon {
-  background: var(--text);
+  background: #10131a;
+  color: #fff;
   font-size: 0.67rem;
 }
 

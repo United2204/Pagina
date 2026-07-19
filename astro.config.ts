@@ -7,4 +7,14 @@ export default defineConfig({
   base: siteConfig.basePath,
   output: 'static',
   integrations: [sitemap()],
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: (asset) =>
+            asset.name?.endsWith('.css') ? '_astro/site.css' : '_astro/[name]-[hash][extname]',
+        },
+      },
+    },
+  },
 });
