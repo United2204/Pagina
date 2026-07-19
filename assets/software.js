@@ -6,7 +6,7 @@
  * Si prefieres apuntar a un instalador concreto, completa "downloadUrl" con la URL del archivo.
  */
 window.SITE = {
-  brand: "Tu Software",
+  brand: "United Software",
   tagline: "Aplicaciones creadas para contribuir a la comunidad.",
   githubProfile: "https://github.com/United2204",
   software: [
