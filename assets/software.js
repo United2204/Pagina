@@ -17,8 +17,7 @@ window.SITE = {
       repo: "United2204/cartridge-releases",
       platform: "macOS",
       accent: "violet",
-      icon: "✦",
-      downloadUrl: "https://github.com/United2204/cartridge-releases/releases",
+      icon: "✦"
     },
     {
       name: "Cartridge Android",
@@ -27,8 +26,7 @@ window.SITE = {
       repo: "United2204/cartridge-releases-android",
       platform: "Android",
       accent: "orange",
-      icon: "○",
-      downloadUrl: "https://github.com/United2204/cartridge-releases-android/releases",
+      icon: "○"
     },
     {
       name: "Cartridge iOS",
@@ -37,7 +35,7 @@ window.SITE = {
       platform: "iOS",
       accent: "violet",
       icon: "✦",
-      downloadUrl: "https://testflight.apple.com/join/EvMPGxTB",
+      downloadUrl: "https://testflight.apple.com/join/EvMPGxTB"
     }
   ],
 };
