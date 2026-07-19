@@ -36,6 +36,15 @@ window.SITE = {
       accent: "violet",
       icon: "✦",
       downloadUrl: "https://testflight.apple.com/join/EvMPGxTB"
-    }
+    },
+{
+  name: "pk3DS-mac-port",
+  description: "UI web para macOS.",
+  version: "Próximamente",
+  repo: "United2204/pk3DS-mac-port",
+  platform: "macOS",
+  accent: "orange",
+  icon: "◈",
+},
   ],
 };
