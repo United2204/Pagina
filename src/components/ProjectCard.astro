@@ -1,0 +1,56 @@
+---
+import type { Project } from '../data/projects';
+import { withBase } from '../config/site';
+import Badge from './Badge.astro';
+import Button from './Button.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const statusTone =
+  project.status === 'Activo'
+    ? 'active'
+    : project.status === 'Próximamente'
+      ? 'upcoming'
+      : 'experimental';
+---
+
+<article class="project-card">
+  <div class="project-card__visual">
+    {
+      project.image ? (
+        <img
+          src={withBase(project.image)}
+          alt={project.imageAlt ?? `Captura de ${project.name}`}
+          loading="lazy"
+        />
+      ) : (
+        <span aria-hidden="true">{project.placeholder}</span>
+      )
+    }
+  </div>
+  <div class="project-card__body">
+    <div class="project-card__meta">
+      <Badge tone={statusTone}>{project.status}</Badge><span
+        >{project.version ? `${project.version} · ` : ''}{project.platforms.join(' · ')}</span
+      >
+    </div>
+    <h3><a href={withBase(`/projects/${project.slug}/`)}>{project.name}</a></h3>
+    <p>{project.summary}</p>
+    <ul class="tag-list" aria-label={`Tecnologías de ${project.name}`}>
+      {project.technologies.slice(0, 3).map((technology) => <li>{technology}</li>)}
+    </ul>
+    <div class="project-card__actions">
+      <Button href={withBase(`/projects/${project.slug}/`)} variant="secondary">Conocer más</Button>
+      {
+        project.downloadUrl && (
+          <a class="inline-link" href={project.downloadUrl} target="_blank" rel="noreferrer">
+            Descargar <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

@@ -1,0 +1,21 @@
+---
+import { siteConfig, withBase } from '../config/site';
+import SocialLinks from './SocialLinks.astro';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <a class="brand" href={withBase('/')}
+        ><span class="brand__mark" aria-hidden="true">U</span><span
+          >{siteConfig.shortName}<b> Software</b></span
+        ></a
+      >
+      <p>{siteConfig.description}</p>
+    </div>
+    <div class="site-footer__links">
+      <SocialLinks compact />
+      <a href={withBase('/privacy/')}>Política de privacidad</a>
+    </div>
+  </div>
+</footer>

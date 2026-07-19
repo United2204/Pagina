@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../components/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { publishedPosts } from '../../../utils/content';
+
+export const getStaticPaths = (async () => {
+  const posts = publishedPosts(await getCollection('blog'));
+  const projects = [
+    ...new Set(posts.flatMap((post) => (post.data.project ? [post.data.project] : []))),
+  ];
+  return projects.map((project) => ({ params: { project } }));
+}) satisfies GetStaticPaths;
+
+const project = Astro.params.project ?? '';
+const posts = publishedPosts(await getCollection('blog')).filter(
+  (post) => post.data.project === project,
+);
+---
+
+<BaseLayout
+  title={`Artículos de ${project}`}
+  description={`Actualizaciones y notas relacionadas con ${project}.`}
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">PROYECTO</p><h1>{project}</h1><p>
+        Publicaciones relacionadas con este proyecto.
+      </p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      {
+        posts.length ? (
+          <div class="post-grid">
+            {posts.map((post) => (
+              <PostCard {post} />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">No hay artículos vinculados a este proyecto.</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

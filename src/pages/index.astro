@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../components/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import FreeProjectNotice from '../components/FreeProjectNotice.astro';
+import PostCard from '../components/PostCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SupportSection from '../components/SupportSection.astro';
+import { siteConfig, withBase } from '../config/site';
+import { projects } from '../data/projects';
+import { publishedPosts } from '../utils/content';
+
+const posts = publishedPosts(await getCollection('blog')).slice(0, 3);
+const featured = projects.filter((project) => project.featured).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="eyebrow">DESARROLLO INDEPENDIENTE</p>
+        <h1>Herramientas gratuitas para compartir con la comunidad.</h1>
+        <p class="hero__lead">
+          Creo aplicaciones, herramientas y experimentos —especialmente cerca de videojuegos— y
+          documento su camino para que sea más fácil encontrarlos, usarlos y mejorarlos.
+        </p>
+        <div class="hero__actions">
+          <Button href={withBase('/projects/')}>Ver proyectos</Button>
+          <Button href={siteConfig.social.github} variant="secondary" external
+            >Visitar GitHub</Button
+          >
+        </div>
+      </div>
+      <div class="hero__visual" aria-label="Panel de proyectos de United Software">
+        <div class="hero__terminal">
+          <p><strong>united@community</strong>:~$ proyectos</p>
+          <p>✓ Cartridge</p>
+          <p>✓ Cartridge iOS</p>
+          <p>○ pk3DS Mac Port</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PROYECTOS DESTACADOS</p><h2>Hechos para usar, probar y compartir.</h2>
+        </div>
+        <p>
+          Cada proyecto reúne su estado, tecnología, enlaces y una forma clara de enviar
+          comentarios.
+        </p>
+      </div>
+      <div class="project-grid">{featured.map((project) => <ProjectCard {project} />)}</div>
+      <div class="actions-row">
+        <Button href={withBase('/projects/')} variant="quiet">Explorar todos los proyectos →</Button
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <FreeProjectNotice />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ÚLTIMAS PUBLICACIONES</p><h2>
+            Notas de desarrollo y actualizaciones.
+          </h2>
+        </div>
+        <p>
+          Artículos cortos para seguir el progreso y conocer las decisiones detrás de cada proyecto.
+        </p>
+      </div>
+      <div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>
+      <div class="actions-row">
+        <Button href={withBase('/blog/')} variant="quiet">Ver el blog completo →</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt"><div class="container"><SupportSection /></div></section>
+</BaseLayout>

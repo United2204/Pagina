@@ -1,0 +1,25 @@
+<button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+  <span class="theme-toggle__sun" aria-hidden="true">☀</span>
+  <span class="theme-toggle__moon" aria-hidden="true">☾</span>
+</button>
+
+<script>
+  const storageKey = 'united-theme';
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+  const setTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.dataset.theme = theme;
+    button?.setAttribute('aria-pressed', String(theme === 'dark'));
+    button?.setAttribute('aria-label', theme === 'dark' ? 'Usar modo claro' : 'Usar modo oscuro');
+  };
+
+  const stored = localStorage.getItem(storageKey);
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  setTheme(stored === 'light' || stored === 'dark' ? stored : preferred);
+
+  button?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(storageKey, next);
+    setTheme(next);
+  });
+</script>

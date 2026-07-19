@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import SEO from './SEO.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: 'website' | 'article';
+  article?: { publishedTime: Date; modifiedTime?: Date; tags: string[] };
+  structuredData?: Record<string, unknown>;
+}
+
+const { title, description, type, article, structuredData } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121a2e" />
+    <SEO {title} {description} path={Astro.url.pathname} {type} {article} {structuredData} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../config/site';
+import { formatDate } from '../utils/content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="post-card">
+  <p class="post-card__date">
+    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+  </p>
+  <h3><a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a></h3>
+  <p>{post.data.description}</p>
+  <div class="post-card__footer">
+    <ul class="tag-list" aria-label="Etiquetas">
+      {
+        post.data.tags.slice(0, 3).map((tag) => (
+          <li>
+            <a href={withBase(`/blog/tags/${tag}/`)}>#{tag}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="inline-link" href={withBase(`/blog/${post.id}/`)}
+      >Leer <span aria-hidden="true">→</span></a
+    >
+  </div>
+</article>

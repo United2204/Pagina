@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { withBase } from '../../config/site';
+import { publishedPosts } from '../../utils/content';
+
+const posts = publishedPosts(await getCollection('blog'));
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="Blog" description="Notas, actualizaciones y artículos de United Software.">
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">BITÁCORA</p><h1>Blog</h1><p>
+        Actualizaciones de proyectos, notas de desarrollo e ideas para compartir el proceso.
+      </p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <h2 class="sr-only">Filtrar artículos por etiqueta</h2><ul class="filter-list">
+        {
+          tags.map((tag) => (
+            <li>
+              <a href={withBase(`/blog/tags/${tag}/`)}>#{tag}</a>
+            </li>
+          ))
+        }
+      </ul><div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>
+    </div>
+  </section>
+</BaseLayout>

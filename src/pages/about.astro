@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Sobre mí"
+  description="Presentación de United2204 como desarrollador independiente."
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">SOBRE MÍ</p><h1>Desarrollo independiente, aprendizaje compartido.</h1><p>
+        {siteConfig.author.bio}
+      </p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container content-grid">
+      <div class="prose">
+        <h2>Biografía</h2><p>{siteConfig.author.bio}</p><h2>Intereses</h2><ul>
+          <li>Herramientas para videojuegos y comunidades creativas.</li><li>
+            Aplicaciones simples que reduzcan fricción.
+          </li><li>Aprendizaje abierto y experimentación técnica.</li>
+        </ul><h2>Objetivo</h2><p>
+          Construir proyectos útiles, publicarlos con claridad y dejar documentado lo necesario para
+          que otras personas puedan probarlos o aportar.
+        </p>
+      </div><aside>
+        <section class="sidebar-card">
+          <h2>Contacto</h2><p>
+            Para consultas, sugerencias o colaboración puedes escribir directamente.
+          </p><Button href={`mailto:${siteConfig.author.email}`}>Escribir un correo</Button>
+        </section><section class="sidebar-card">
+          <h2>Enlaces</h2><p>
+            <a class="inline-link" href={siteConfig.social.github} target="_blank" rel="noreferrer"
+              >GitHub ↗</a
+            >
+          </p>
+        </section>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import { siteConfig, withBase } from '../config/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => {
+  const destination = withBase(href);
+  return href === '/' ? pathname === destination : pathname.startsWith(destination);
+};
+---
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="brand" href={withBase('/')} aria-label={`${siteConfig.name}, inicio`}>
+      <span class="brand__mark" aria-hidden="true">U</span>
+      <span>{siteConfig.shortName}<b> Software</b></span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {
+        siteConfig.navigation.map((item) => (
+          <a class:list={{ active: isActive(item.href) }} href={withBase(item.href)}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <details class="mobile-nav">
+        <summary><span class="sr-only">Abrir menú</span><span aria-hidden="true">☰</span></summary>
+        <nav aria-label="Navegación móvil">
+          {siteConfig.navigation.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

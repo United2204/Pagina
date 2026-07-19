@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../components/BaseLayout.astro';
+import { withBase } from '../../config/site';
+import { formatDate, publishedPosts } from '../../utils/content';
+
+export const getStaticPaths = (async () => {
+  const posts = publishedPosts(await getCollection('blog'));
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const articleData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { '@type': 'Person', name: post.data.author },
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  article={{
+    publishedTime: post.data.pubDate,
+    modifiedTime: post.data.updatedDate,
+    tags: post.data.tags,
+  }}
+  structuredData={articleData}
+>
+  <header class="page-header">
+    <div class="container article">
+      <p class="breadcrumbs"><a href={withBase('/blog/')}>Blog</a> / Artículo</p><p class="eyebrow">
+        {post.data.project ? `PROYECTO: ${post.data.project}` : 'NOTAS'}
+      </p><h1>{post.data.title}</h1><p>{post.data.description}</p><p class="article__meta">
+        Por {post.data.author} · <time datetime={post.data.pubDate.toISOString()}
+          >{formatDate(post.data.pubDate)}</time
+        >{post.data.updatedDate && ` · Actualizado ${formatDate(post.data.updatedDate)}`}
+      </p><ul class="tag-list">
+        {
+          post.data.tags.map((tag) => (
+            <li>
+              <a href={withBase(`/blog/tags/${tag}/`)}>#{tag}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </header>
+  <article class="section"><div class="article prose"><Content /></div></article>
+</BaseLayout>

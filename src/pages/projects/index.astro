@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import FreeProjectNotice from '../../components/FreeProjectNotice.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<BaseLayout
+  title="Proyectos"
+  description="Aplicaciones, herramientas y experimentos de United Software."
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">CATÁLOGO</p><h1>Proyectos</h1><p>
+        Herramientas en desarrollo, experimentos y proyectos gratuitos. Cada ficha reúne su estado,
+        enlaces y formas de colaborar.
+      </p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <div class="project-grid">{projects.map((project) => <ProjectCard {project} />)}</div>
+    </div>
+  </section>
+  <section class="section section--alt"><div class="container"><FreeProjectNotice /></div></section>
+</BaseLayout>

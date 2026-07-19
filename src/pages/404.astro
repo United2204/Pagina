@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { withBase } from '../config/site';
+---
+
+<BaseLayout title="Página no encontrada" description="La ruta solicitada no existe.">
+  <section class="section">
+    <div
+      class="container"
+      style="min-height: 56vh; display: grid; place-items: center; text-align: center"
+    >
+      <div>
+        <p class="eyebrow">ERROR 404</p><h1>Esta ruta no está en el mapa.</h1><p
+          style="color: var(--muted)"
+        >
+          Puede que el enlace haya cambiado o que el proyecto todavía no esté publicado.
+        </p><Button href={withBase('/')}>Volver al inicio</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

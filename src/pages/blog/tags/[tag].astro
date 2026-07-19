@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../components/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { publishedPosts } from '../../../utils/content';
+
+export const getStaticPaths = (async () => {
+  const posts = publishedPosts(await getCollection('blog'));
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({ params: { tag } }));
+}) satisfies GetStaticPaths;
+
+const tag = Astro.params.tag ?? '';
+const posts = publishedPosts(await getCollection('blog')).filter((post) =>
+  post.data.tags.includes(tag),
+);
+---
+
+<BaseLayout title={`Etiqueta: ${tag}`} description={`Artículos con la etiqueta ${tag}.`}>
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">ETIQUETA</p><h1>#{tag}</h1><p>Artículos relacionados con esta etiqueta.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      {
+        posts.length ? (
+          <div class="post-grid">
+            {posts.map((post) => (
+              <PostCard {post} />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">No hay artículos con esta etiqueta.</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

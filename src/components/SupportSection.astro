@@ -1,0 +1,19 @@
+---
+import { siteConfig, withBase } from '../config/site';
+import Button from './Button.astro';
+---
+
+<section class="support-banner" aria-labelledby="support-title">
+  <div>
+    <p class="eyebrow">APOYO OPCIONAL</p>
+    <h2 id="support-title">Los proyectos siguen siendo gratuitos.</h2>
+    <p>
+      Si te resultan útiles, puedes colaborar con costos de publicación, dominio, mantenimiento y
+      desarrollo. No hay obligación ni contenido bloqueado.
+    </p>
+  </div>
+  <div class="support-banner__actions">
+    <Button href={withBase('/support/')} variant="primary">Formas de apoyar</Button>
+    <Button href={siteConfig.social.github} variant="secondary" external>Visitar GitHub</Button>
+  </div>
+</section>
