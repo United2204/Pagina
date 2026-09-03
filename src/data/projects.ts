@@ -33,16 +33,22 @@ export const projects: Project[] = [
     name: 'Cartridge para macOS',
     summary: 'Launcher nativo para ejecutar fangames de RPG Maker XP / Essentials en macOS.',
     description:
-      'Cartridge permite abrir fangames compatibles de forma directa, sin instalar Wine ni configurar herramientas adicionales. Es un proyecto experimental y en desarrollo activo.',
+      'Cartridge permite abrir fangames compatibles de forma directa, sin instalar Wine ni configurar herramientas adicionales. La versión para macOS ya está disponible como release estable.',
     status: 'Activo',
-    version: 'v0.1-beta14',
+    version: 'v1.0.0',
     technologies: ['macOS', 'RPG Maker XP', 'Pokémon Essentials'],
     platforms: ['macOS'],
     repository: repositories.cartridge,
-    downloadUrl: `${repositories.cartridge}/releases/latest`,
+    downloadUrl: `${repositories.cartridge}/releases/tag/v1.0.0`,
     issuesUrl: `${repositories.cartridge}/issues`,
     communityUrl: siteConfig.social.discord,
     changelog: [
+      {
+        version: 'v1.0.0',
+        date: '3 de septiembre de 2026',
+        notes:
+          'Primera versión estable para macOS, con build universal Intel + Apple Silicon, actualizaciones automáticas y notarización de Apple.',
+      },
       {
         version: 'v0.1-beta14',
         date: '9 de julio de 2026',
@@ -53,7 +59,7 @@ export const projects: Project[] = [
     features: [
       'Inicio directo de juegos compatibles.',
       'Experiencia nativa en macOS sin depender de Wine.',
-      'Actualización automática para versiones beta.',
+      'Actualización automática desde las betas y releases estables.',
     ],
     contribution:
       'Comparte los problemas que encuentres, indicando el juego, la versión de Cartridge y los pasos para reproducirlos.',
