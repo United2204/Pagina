@@ -16,46 +16,84 @@ const featured = projects.filter((project) => project.featured).slice(0, 3);
 
 <BaseLayout>
   <section class="hero">
-    <div class="container hero__grid">
-      <div>
-        <p class="eyebrow">DESARROLLO INDEPENDIENTE</p>
-        <h1>Herramientas gratuitas para compartir con la comunidad.</h1>
-        <p class="hero__lead">
-          Creo aplicaciones, herramientas y experimentos —especialmente cerca de videojuegos— y
-          documento su camino para que sea más fácil encontrarlos, usarlos y mejorarlos.
+    <div class="container">
+      <div class="hero__topline">
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span> UNITED SOFTWARE / INDEPENDIENTE
         </p>
-        <div class="hero__actions">
-          <Button href={withBase('/projects/')}>Ver proyectos</Button>
-          <Button href={siteConfig.social.github} variant="secondary" external
-            >Visitar GitHub</Button
-          >
+        <span class="hero__counter">04 proyectos · 03 plataformas</span>
+      </div>
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="hero__kicker">SOFTWARE PARA JUGAR Y CREAR</p>
+          <h1>Herramientas que hacen más simple estar cerca del juego.</h1>
+          <p class="hero__lead">
+            Desarrollo aplicaciones gratuitas para comunidades de videojuegos: lanzadores nativos,
+            ports y pequeños experimentos que resuelven fricciones concretas.
+          </p>
+          <div class="hero__actions">
+            <Button href={withBase('/projects/')}
+              >Explorar proyectos <span aria-hidden="true">↗</span></Button
+            >
+            <Button href={siteConfig.social.github} variant="secondary" external>Ver código</Button>
+          </div>
+        </div>
+        <div class="hero__visual" aria-label="Índice de proyectos de United Software">
+          <div class="system-panel">
+            <div class="system-panel__header">
+              <span>PROJECT_INDEX</span>
+              <span class="system-panel__live"
+                ><span class="status-dot" aria-hidden="true"></span> ACTIVO</span
+              >
+            </div>
+            <div class="system-panel__focus">
+              <span>ÁREA DE TRABAJO</span>
+              <strong>Herramientas para<br />videojuegos</strong>
+            </div>
+            <div class="system-panel__list">
+              {
+                featured.map((project, index) => (
+                  <a href={withBase(`/projects/${project.slug}/`)}>
+                    <span class="system-panel__index">0{index + 1}</span>
+                    <span class="system-panel__name">{project.name}</span>
+                    <span class="system-panel__status">{project.status}</span>
+                    <span class="system-panel__arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                ))
+              }
+            </div>
+            <div class="system-panel__footer">
+              <span>ÚLTIMA ACTUALIZACIÓN</span><span>SEP 2026</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="hero__visual" aria-label="Panel de proyectos de United Software">
-        <div class="hero__terminal">
-          <p><strong>united@community</strong>:~$ proyectos</p>
-          <p>✓ Cartridge</p>
-          <p>✓ Cartridge iOS</p>
-          <p>○ pk3DS Mac Port</p>
-        </div>
+      <div class="hero__stats" aria-label="Resumen de United Software">
+        <div><strong>01</strong><span>proyecto estable</span></div>
+        <div><strong>02</strong><span>en beta y pruebas</span></div>
+        <div><strong>∞</strong><span>acceso gratuito</span></div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--projects">
     <div class="container">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">PROYECTOS DESTACADOS</p><h2>Hechos para usar, probar y compartir.</h2>
+      <div class="section-heading section-heading--indexed">
+        <div class="section-heading__title">
+          <span class="section-index">01</span>
+          <div><p class="eyebrow">PROYECTOS DESTACADOS</p><h2>En marcha ahora</h2></div>
         </div>
         <p>
-          Cada proyecto reúne su estado, tecnología, enlaces y una forma clara de enviar
-          comentarios.
+          Estado, plataforma y enlaces importantes a primera vista. Entra en cada ficha para conocer
+          el proyecto.
         </p>
       </div>
       <div class="project-grid">{featured.map((project) => <ProjectCard {project} />)}</div>
       <div class="actions-row">
-        <Button href={withBase('/projects/')} variant="quiet">Explorar todos los proyectos →</Button
+        <Button href={withBase('/projects/')} variant="quiet"
+          >Ver el catálogo completo <span aria-hidden="true">↗</span></Button
         >
       </div>
     </div>
@@ -67,21 +105,20 @@ const featured = projects.filter((project) => project.featured).slice(0, 3);
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--journal">
     <div class="container">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">ÚLTIMAS PUBLICACIONES</p><h2>
-            Notas de desarrollo y actualizaciones.
-          </h2>
+      <div class="section-heading section-heading--indexed">
+        <div class="section-heading__title">
+          <span class="section-index">02</span>
+          <div><p class="eyebrow">ÚLTIMAS PUBLICACIONES</p><h2>Bitácora de construcción</h2></div>
         </div>
-        <p>
-          Artículos cortos para seguir el progreso y conocer las decisiones detrás de cada proyecto.
-        </p>
+        <p>Notas breves sobre progreso, decisiones técnicas y lanzamientos.</p>
       </div>
       <div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>
       <div class="actions-row">
-        <Button href={withBase('/blog/')} variant="quiet">Ver el blog completo →</Button>
+        <Button href={withBase('/blog/')} variant="quiet"
+          >Leer toda la bitácora <span aria-hidden="true">↗</span></Button
+        >
       </div>
     </div>
   </section>
