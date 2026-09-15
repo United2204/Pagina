@@ -807,6 +807,12 @@ code {
   object-fit: cover;
 }
 
+.project-card__visual img.project-card__image--contain,
+.project-hero__visual img.project-hero__image--contain {
+  object-fit: contain;
+  padding: 1.6rem;
+}
+
 .project-card__body {
   display: flex;
   flex: 1;

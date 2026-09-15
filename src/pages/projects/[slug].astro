@@ -73,6 +73,7 @@ const projectData = {
             <img
               src={withBase(project.image)}
               alt={project.imageAlt ?? `Captura de ${project.name}`}
+              class:list={{ 'project-hero__image--contain': project.imageFit === 'contain' }}
             />
           ) : (
             <span aria-hidden="true">{project.placeholder}</span>

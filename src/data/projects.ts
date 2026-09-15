@@ -22,6 +22,7 @@ export type Project = {
   placeholder: string;
   image?: string;
   imageAlt?: string;
+  imageFit?: 'contain' | 'cover';
   featured?: boolean;
 };
 
@@ -64,6 +65,9 @@ export const projects: Project[] = [
     contribution:
       'Comparte los problemas que encuentres, indicando el juego, la versión de Cartridge y los pasos para reproducirlos.',
     placeholder: 'MAC',
+    image: '/images/cartridge-icon.png',
+    imageAlt: 'Logo de Cartridge',
+    imageFit: 'contain',
     featured: true,
   },
   {
@@ -97,6 +101,9 @@ export const projects: Project[] = [
     contribution:
       'Prueba distintos juegos y reporta modelos de dispositivo, versión de Android y una descripción clara si aparece un problema.',
     placeholder: 'AND',
+    image: '/images/cartridge-icon.png',
+    imageAlt: 'Logo de Cartridge',
+    imageFit: 'contain',
     featured: true,
   },
   {
@@ -126,6 +133,9 @@ export const projects: Project[] = [
     contribution:
       'Comparte comentarios desde TestFlight y detalla el juego y los pasos que realizaste si encuentras un error.',
     placeholder: 'iOS',
+    image: '/images/cartridge-icon.png',
+    imageAlt: 'Logo de Cartridge',
+    imageFit: 'contain',
     featured: true,
   },
   {

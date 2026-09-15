@@ -24,6 +24,7 @@ const statusTone =
         <img
           src={withBase(project.image)}
           alt={project.imageAlt ?? `Captura de ${project.name}`}
+          class:list={{ 'project-card__image--contain': project.imageFit === 'contain' }}
           loading="lazy"
         />
       ) : (
